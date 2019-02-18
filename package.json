@@ -1,0 +1,78 @@
+{
+  "name": "progressbarxxxx",
+  "version": "1.0.0",
+  "description": "Inspired by ProgressBar201X",
+  "main": "bin/progressbarxxxx.js",
+  "repository": "https://github.com/blackcater/progressbarxxxx.git",
+  "author": "blackcater <blackcater2015@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "bin": {
+    "progressbar": "./bin/progressbarxxxx.js"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "scripts": {
+    "dev": "node ./bin/progressbarxxxx.js",
+    "build": "babel src --out-dir lib --ignore **/__tests__ --copy-files",
+    "watch": "babel -w src --out-dir lib --ignore **/__tests__ --copy-files",
+    "prettier": "prettier --write 'src/**/*.js'",
+    "lint": "eslint --fix 'src/**/*.js'",
+    "test": "yarn lint && jest"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.1.0",
+    "eslint": "^5.14.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "husky": "^1.3.1",
+    "jest": "^24.1.0",
+    "lint-staged": "^8.1.4",
+    "prettier": "^1.16.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "prettier --write",
+      "eslint --fix",
+      "git add ."
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/dist/",
+      "/docs/",
+      "/examples?/",
+      "/node_modules/"
+    ],
+    "bail": true
+  }
+}
