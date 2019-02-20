@@ -23,7 +23,9 @@
     "test": "yarn lint && jest"
   },
   "dependencies": {
-    "chalk": "^2.4.2"
+    "chalk": "^2.4.2",
+    "commander": "^2.19.0",
+    "lunar": "^0.0.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
