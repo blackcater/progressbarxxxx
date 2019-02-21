@@ -5,7 +5,6 @@ const packageJSON = require('../package');
 
 commander
   .version(packageJSON.version)
-  .option('-r, --lunar', '', false)
   .option('-d, --days', '', false)
   .option('-c, --color <color>', '', 'pink')
   .option('-t, --theme <theme>', '', 'solid')
