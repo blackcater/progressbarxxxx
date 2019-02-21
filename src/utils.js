@@ -4,21 +4,6 @@ function isLeapYear(year) {
   return (divide(4) && !divide(100)) || divide(400);
 }
 
-function calculateYearDays(date) {
-  const year = date.getFullYear();
-  const fromDate = new Date(year, 0, 1);
-  const toDate = new Date(year + 1, 0, 1);
-
-  return calculateBetweenDays(fromDate, toDate);
-}
-
-function calculatePassedDays(date) {
-  const year = date.getFullYear();
-  const fromDate = new Date(year, 0, 1);
-
-  return calculateBetweenDays(fromDate, date);
-}
-
 function getMonthDays(month, isLeap) {
   const months = [
     31, // Jan.
@@ -36,6 +21,35 @@ function getMonthDays(month, isLeap) {
   ];
 
   return months[month];
+}
+
+function calculateMonthBetweenDays(
+  year,
+  [fromMonth, toMonth],
+  [fromDay, toDay]
+) {
+  const isLeap = isLeapYear(year);
+  let sum = 0;
+
+  if (fromMonth === toMonth) return toDay - fromDay;
+
+  for (let i = 0; i <= toMonth; i++) {
+    if (i === fromMonth) {
+      sum += getMonthDays(i, isLeap) - fromDay;
+
+      continue;
+    }
+
+    if (i === toMonth) {
+      sum += toDay;
+
+      continue;
+    }
+
+    sum += getMonthDays(i, isLeap);
+  }
+
+  return sum;
 }
 
 function calculateBetweenDays(fromDate, toDate) {
@@ -60,44 +74,50 @@ function calculateBetweenDays(fromDate, toDate) {
 
   let sum = 0;
 
-  // same year and same month
-  if (fY === tY && fM === tM) {
-    return tD - fD;
-  }
-
   // same year
   if (fY === tY) {
-    const isLeap = isLeapYear(fY);
-
-    for (let i = fM; i <= tM; i++) {
-      if (i === fM) {
-        sum += getMonthDays(i, isLeap) - fD;
-
-        continue;
-      }
-
-      if (i === tM) {
-        sum += tD;
-
-        continue;
-      }
-
-      sum += getMonthDays(i, isLeap);
-    }
-
-    return sum;
+    return calculateMonthBetweenDays(fY, [fM, tM], [fD, tD]);
   }
 
   // normal case
   for (let i = fY; i <= tY; i++) {
     // eslint-disable-next-line
     const isLeap = isLeapYear(i);
+
+    if (i === fY) {
+      sum += calculateMonthBetweenDays(i, [fM, 11], [fD, 31]);
+
+      continue;
+    }
+
+    if (i === tY) {
+      sum += calculateMonthBetweenDays(i, [0, tM], [0, tD]);
+
+      continue;
+    }
+
+    sum += calculateMonthBetweenDays(i, [0, 11], [0, 31]);
   }
+
+  return sum;
+}
+
+function calculateYearDays(date) {
+  const year = date.getFullYear();
+  const fromDate = new Date(year, 0, 1);
+  const toDate = new Date(year + 1, 0, 1);
+
+  return calculateBetweenDays(fromDate, toDate);
+}
+
+function calculatePassedDays(date) {
+  const year = date.getFullYear();
+  const fromDate = new Date(year, 0, 1);
+
+  return calculateBetweenDays(fromDate, date);
 }
 
 module.exports = {
-  isLeapYear,
   calculateYearDays,
   calculatePassedDays,
-  calculateBetweenDays,
 };
