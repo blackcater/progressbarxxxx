@@ -14,4 +14,26 @@ describe('#calculateBetweenDays', () => {
       calculateBetweenDays(new Date(2019, 1, 20), new Date(2019, 1, 1))
     ).toThrow('fromDate cannot be later than toDate');
   });
+
+  it('should be correct when same year', () => {
+    expect(
+      calculateBetweenDays(new Date(2019, 0, 1), new Date(2019, 1, 1))
+    ).toBe(31);
+
+    expect(
+      calculateBetweenDays(new Date(2019, 1, 1), new Date(2019, 2, 1))
+    ).toBe(28);
+
+    expect(
+      calculateBetweenDays(new Date(2016, 1, 1), new Date(2016, 2, 1))
+    ).toBe(29);
+
+    expect(
+      calculateBetweenDays(new Date(2019, 0, 1), new Date(2019, 11, 31))
+    ).toBe(364);
+
+    expect(() =>
+      calculateBetweenDays(new Date(2019, 1, 1), new Date(2019, 0, 1))
+    ).toThrow('fromDate cannot be later than toDate');
+  });
 });

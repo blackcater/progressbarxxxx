@@ -33,7 +33,7 @@ function calculateMonthBetweenDays(
 
   if (fromMonth === toMonth) return toDay - fromDay;
 
-  for (let i = 0; i <= toMonth; i++) {
+  for (let i = fromMonth; i <= toMonth; i++) {
     if (i === fromMonth) {
       sum += getMonthDays(i, isLeap) - fromDay;
 
@@ -82,8 +82,6 @@ function calculateBetweenDays(fromDate, toDate) {
   // normal case
   for (let i = fY; i <= tY; i++) {
     // eslint-disable-next-line
-    const isLeap = isLeapYear(i);
-
     if (i === fY) {
       sum += calculateMonthBetweenDays(i, [fM, 11], [fD, 31]);
 
