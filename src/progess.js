@@ -5,8 +5,8 @@ class Progress {
     const date = new Date();
 
     this.options = options;
-    this.totalDays = calculateYearDays(date, options.lunar);
-    this.passedDays = calculatePassedDays(date, options.lunar);
+    this.totalDays = calculateYearDays(date);
+    this.passedDays = calculatePassedDays(date);
   }
 
   run() {}

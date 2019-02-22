@@ -120,4 +120,5 @@ function calculatePassedDays(date) {
 module.exports = {
   calculateYearDays,
   calculatePassedDays,
+  calculateBetweenDays,
 };
