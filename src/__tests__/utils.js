@@ -36,4 +36,26 @@ describe('#calculateBetweenDays', () => {
       calculateBetweenDays(new Date(2019, 1, 1), new Date(2019, 0, 1))
     ).toThrow('fromDate cannot be later than toDate');
   });
+
+  it('should be correct when different year', () => {
+    expect(
+      calculateBetweenDays(new Date(2015, 5, 1), new Date(2016, 5, 1))
+    ).toBe(366);
+
+    expect(
+      calculateBetweenDays(new Date(2016, 0, 1), new Date(2017, 0, 1))
+    ).toBe(366);
+
+    expect(
+      calculateBetweenDays(new Date(2017, 5, 1), new Date(2018, 5, 1))
+    ).toBe(365);
+
+    expect(
+      calculateBetweenDays(new Date(2018, 0, 1), new Date(2019, 0, 1))
+    ).toBe(365);
+
+    expect(
+      calculateBetweenDays(new Date(2017, 0, 1), new Date(2019, 0, 1))
+    ).toBe(365 * 2);
+  });
 });
