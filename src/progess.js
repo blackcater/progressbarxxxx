@@ -17,6 +17,7 @@ class Progress {
     let times = 0;
 
     if (!animate) {
+      console.log('');
       this._printResult(count, width);
       this._printTail();
 
