@@ -1,6 +1,6 @@
 {
   "name": "progressbarxxxx",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Inspired by ProgressBar201X",
   "main": "bin/progressbarxxxx.js",
   "repository": "https://github.com/blackcater/progressbarxxxx.git",
