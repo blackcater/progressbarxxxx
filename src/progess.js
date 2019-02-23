@@ -16,7 +16,7 @@ class Progress {
     const count = Math.floor(width * (this.passedDays / this.totalDays));
     let times = 0;
 
-    if (animate) {
+    if (!animate) {
       this._printResult(count, width);
       this._printTail();
 
