@@ -2,7 +2,11 @@
 
 > Inspired by ProgressBar201X
 
-![demo](./gif/2019-02-23%2018.28.28.gif)
+![demo](./gif/demo.gif)
+
+## Usage
+
+![screenshot](./gif/screenshot.png)
 
 ## Options
 
