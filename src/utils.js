@@ -116,6 +116,7 @@ function calculatePassedDays(date) {
 }
 
 module.exports = {
+  isLeapYear,
   calculateYearDays,
   calculatePassedDays,
   calculateBetweenDays,

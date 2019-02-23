@@ -1,4 +1,9 @@
-import { calculateBetweenDays } from '../utils';
+import {
+  isLeapYear,
+  calculateBetweenDays,
+  calculatePassedDays,
+  calculateYearDays,
+} from '../utils';
 
 describe('#calculateBetweenDays', () => {
   it('should be right when same year and same month', () => {
@@ -57,5 +62,27 @@ describe('#calculateBetweenDays', () => {
     expect(
       calculateBetweenDays(new Date(2017, 0, 1), new Date(2019, 0, 1))
     ).toBe(365 * 2);
+  });
+});
+
+describe('#calculatePassedDays', () => {
+  it('should be correct', () => {
+    const date = new Date();
+    const year = date.getFullYear();
+
+    expect(calculatePassedDays(new Date(year, 0, 1))).toBe(0);
+    expect(calculatePassedDays(new Date(year, 1, 1))).toBe(31);
+    expect(calculatePassedDays(new Date(year, 11, 31))).toBe(
+      isLeapYear(year) ? 365 : 364
+    );
+  });
+});
+
+describe('#calculateYearDays', () => {
+  it('should be correct', () => {
+    const date = new Date();
+    const year = date.getFullYear();
+
+    expect(calculateYearDays(date)).toBe(isLeapYear(year) ? 366 : 365);
   });
 });
