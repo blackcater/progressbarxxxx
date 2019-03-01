@@ -36,7 +36,7 @@ class Progress {
       update();
 
       this._printResult(count, times);
-    }, 10);
+    }, 16.67);
   }
 
   _printResult(count, times) {
