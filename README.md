@@ -2,7 +2,7 @@
 
 > Inspired by ProgressBar201X
 
-<img align="right" width="350px" src="./gif/demo.gif" />
+<img align="right" width="450px" src="./gif/demo.gif" />
 
 ## Install
 
