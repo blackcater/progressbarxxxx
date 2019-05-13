@@ -2,7 +2,13 @@
 
 > Inspired by ProgressBar201X
 
-![demo](./gif/demo.gif)
+<img align="right" width="350px" src="./gif/demo.gif" />
+
+## Install
+
+```shell
+> yarn global add progressbarxxxx
+```
 
 ## Usage
 
